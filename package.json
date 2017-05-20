@@ -1,0 +1,49 @@
+{
+  "name": "JobsScrapper",
+  "version": "1.0.0",
+  "description": "App showing developer jobs from major slovenian job offering sites",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start",
+    "start": "node server.js"
+  },
+  "author": "Tim Janzelj",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "firebase": "^3.9.0",
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^2.0.0",
+    "react-tap-event-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "expect": "^1.20.2",
+    "jquery": "^3.2.1",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.2.0",
+    "moment": "^2.18.1",
+    "node-sass": "^4.5.2",
+    "node-uuid": "^1.4.8",
+    "react-addons-test-utils": "^15.5.1",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.3",
+    "script-loader": "^0.7.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.3.3"
+  }
+}
