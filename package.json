@@ -10,13 +10,15 @@
   "author": "Tim Janzelj",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^0.22.0",
     "express": "^4.15.2",
     "firebase": "^3.9.0",
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^2.0.0",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
