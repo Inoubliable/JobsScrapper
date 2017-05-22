@@ -40,7 +40,17 @@ router.get('/', (req, res, next) => {
 	            jobAds.each(function() {
 	            	title = $(this).find('.details .title').text();
 	            	description = $(this).find('.details').children('p').text();
-	            	postedDate = $(this).find('.details .box-details .boxItemGroup:nth-child(1) .detail').text();
+	            	postedDateRaw = $(this).find('.details .box-details .boxItemGroup:nth-child(1) .detail').text();
+	            	if(postedDateRaw == 'Danes') {
+	            		postedDate = Date.now();
+	            	} else if(postedDateRaw == 'Včeraj') {
+	            		var postedDate = new Date();
+	            		postedDate.setDate(postedDate.getDate() - 1);
+	            	} else {
+	            		postedDate = parseDate(postedDateRaw);
+						console.log(postedDate);
+	            	}
+	            	
 	            	employer = $(this).find('.details .box-details .boxItemGroup:nth-child(2) .detail').text();
 	            	location = $(this).find('.details .box-details .boxItemGroup:nth-child(3) .detail').text();
 	            	linkEnd = $(this).attr('href');
@@ -82,6 +92,7 @@ router.get('/', (req, res, next) => {
 	            	postedDateRaw = $(this).find('.date').text();
 	            	postedDate = postedDateRaw.replace(' Objavljeno: ', '');
 	            	postedDate = postedDate.trim();
+	            	postedDate = parseDate(postedDate);
 	            	link = 'https://www.mojazaposlitev.si/' + $(this).children('h4').children('a').attr('href');
 
 	            	jobs.push({
@@ -112,6 +123,7 @@ router.get('/', (req, res, next) => {
 	            	employer = $(this).find('.box-details .boxItemGroup:nth-child(2) .detail').text();
 	            	location = $(this).find('.lokacija strong').text();
 	            	postedDate = '23.12.2013';
+	            	postedDate = parseDate(postedDate);
 	            	link = $(this).find('.jobData .actionBlock a.button1').attr('href');
 
 	            	jobs.push({
@@ -127,5 +139,12 @@ router.get('/', (req, res, next) => {
 	    });
 	}
 });
+
+function parseDate(input) {
+	var parts = input.split('.');
+	// new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+	var date = new Date(parts[2], parts[1]-1, parts[0]); // months are 0-based
+	return date.valueOf();
+}
 
 module.exports = router;
