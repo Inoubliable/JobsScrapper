@@ -7,6 +7,14 @@ var cheerio = require('cheerio');
 var db = require('../config/database');
 var firebaseRef = db.database().ref();
 
+var links = [];
+firebaseRef.child('jobs').once('value').then((snapshot) => {
+	var jobs = snapshot.val() || {};
+	jobs.forEach((job) => {
+		links.push(job.link);
+	});
+});
+
 router.get('/', (req, res, next) => {
 	var jobs = [];
 
@@ -48,7 +56,6 @@ router.get('/', (req, res, next) => {
 	            		postedDate.setDate(postedDate.getDate() - 1);
 	            	} else {
 	            		postedDate = parseDate(postedDateRaw);
-						console.log(postedDate);
 	            	}
 	            	
 	            	employer = $(this).find('.details .box-details .boxItemGroup:nth-child(2) .detail').text();
@@ -122,9 +129,15 @@ router.get('/', (req, res, next) => {
 	            	description = $(this).find('.jobData .jobContent p').text();
 	            	employer = $(this).find('.box-details .boxItemGroup:nth-child(2) .detail').text();
 	            	location = $(this).find('.lokacija strong').text();
-	            	postedDate = '23.12.2013';
-	            	postedDate = parseDate(postedDate);
 	            	link = $(this).find('.jobData .actionBlock a.button1').attr('href');
+
+	            	if(links.indexOf(link) == -1) {
+	            		postedDate = new Date().getTime();
+	            	} else {
+	            		// For now some date before 22.5., after some time all dates will be right
+	            		postedDateRaw = '15.5.2017';
+	            		postedDate = parseDate(postedDateRaw);
+	            	}
 
 	            	jobs.push({
 	            		title,

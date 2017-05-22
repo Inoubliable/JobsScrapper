@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var cron = require('node-cron');
 
 // Firebase
 var db = require('./config/database');
@@ -53,6 +54,13 @@ app.get('/jobs', (req, res) => {
 
 		res.json(parsedJobs);
 	});
+});
+
+// Cron jobs
+cron.schedule('0 10,18 * * *', function(){
+	request('/scrape', function(error, response, body) {
+
+    });
 });
 
 app.use(express.static('public'));
