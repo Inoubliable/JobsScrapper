@@ -3,7 +3,9 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 
 const style = {
 	jobCard: {
-		marginTop: 20
+		width: '70%',
+		margin: 'auto',
+		marginTop: 30
 	}
 };
 
@@ -14,15 +16,17 @@ class Job extends React.Component {
 	}
 
 	render() {
-		var {title, description, employer, place} = this.props;
+		var {title, description, employer, location, postedDate, link} = this.props;
 
 		return (
-			<Card style={style.jobCard}>
-				<CardTitle title={title} subtitle={employer + ', ' + place} />
-				<CardText>
-					{description}
-				</CardText>
-			</Card>
+				<Card style={style.jobCard}>
+					<a href={link} target="_blank">
+						<CardTitle title={title} subtitle={employer + ', ' + location + ' - ' + postedDate} />
+						<CardText>
+							{description}
+						</CardText>
+					</a>
+				</Card>
 		)
 	}
 

@@ -2,7 +2,7 @@
   "name": "JobsScrapper",
   "version": "1.0.0",
   "description": "App showing developer jobs from major slovenian job offering sites",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "karma start",
     "start": "node server.js"
@@ -10,6 +10,7 @@
   "author": "Tim Janzelj",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "cheerio": "^0.22.0",
     "express": "^4.15.2",
     "firebase": "^3.9.0",

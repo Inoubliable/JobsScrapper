@@ -11,7 +11,7 @@ class JobsApp extends React.Component {
 	render() {
 		return (
 			<div>
-				<TextField floatingLabelText="Keyword"/>
+				<TextField floatingLabelText="Search"/>
 			</div>
 		)
 	}
