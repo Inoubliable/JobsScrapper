@@ -48,7 +48,7 @@ app.get('/jobs', (req, res) => {
 			} else if(yesterday.isSame(jobDate, 'd')) {
 				job.postedDate = 'Včeraj';
 			} else {
-				job.postedDate = moment(new Date(job.postedDate)).format('D.M.Y');
+				job.postedDate = jobDate.format('D.M.Y');
 			}
 		});
 

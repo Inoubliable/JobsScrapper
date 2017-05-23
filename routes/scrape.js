@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
+var moment = require('moment');
 
 // Firebase
 var db = require('../config/database');
@@ -52,8 +53,7 @@ router.get('/', (req, res, next) => {
 	            	if(postedDateRaw == 'Danes') {
 	            		postedDate = Date.now();
 	            	} else if(postedDateRaw == 'Včeraj') {
-	            		var postedDate = new Date();
-	            		postedDate.setDate(postedDate.getDate() - 1);
+	            		postedDate = moment().add(-1, 'days').valueOf();
 	            	} else {
 	            		postedDate = parseDate(postedDateRaw);
 	            	}
